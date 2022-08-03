@@ -34,3 +34,7 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+      - uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: src/ 
