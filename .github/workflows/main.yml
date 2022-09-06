@@ -31,8 +31,10 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: > 
+              mkdir -p bin &&
               chmod +x build_and_run.sh &&
                ./build_and_run.sh 
+
 
       - uses: AButler/upload-release-assets@v2.0
         with:
