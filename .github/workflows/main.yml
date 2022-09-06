@@ -39,6 +39,6 @@ jobs:
           name: my-artifact
           path: src/ 
       - uses: AButler/upload-release-assets@v2.0
-          with:
-            files: './src/*'
-            repo-token: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          files: './src/*'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
