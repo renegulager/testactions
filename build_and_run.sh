@@ -4,3 +4,6 @@ cwd=`dirname "${0}"`
 expr "${0}" : "/.*" > /dev/null || cwd=`(cd "${cwd}" && pwd)`
 
 gcc ${cwd}/main.cpp -lstdc++ -o bin/a.out
+chmod +x bin/a.out
+cd bin
+./a.out

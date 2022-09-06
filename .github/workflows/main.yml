@@ -29,7 +29,7 @@ jobs:
         run: sudo apt-get install cmake gcc -y
         
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: compile
         run: > 
               mkdir -p bin &&
               chmod +x build_and_run.sh &&
@@ -38,5 +38,5 @@ jobs:
 
       - uses: AButler/upload-release-assets@v2.0
         with:
-          files: './bin/*'
+          files: 'bin/*'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
