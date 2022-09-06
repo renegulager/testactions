@@ -25,20 +25,13 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
+      - name: Prepare env
+        run: apt-get install cmake gcc -y
+        
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
-      - uses: actions/upload-artifact@v3
-        with:
-          name: my-artifact
-          path: src/ 
+        run: build_and_run.sh         
       - uses: AButler/upload-release-assets@v2.0
         with:
-          files: './src/*'
+          files: './bin/*'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
