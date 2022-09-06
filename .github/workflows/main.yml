@@ -38,6 +38,6 @@ jobs:
 
       - uses: AButler/upload-release-assets@v2.0
         with:
-          id: v1
+          release-tag: v1
           files: 'bin/*'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
