@@ -33,8 +33,8 @@ jobs:
         run: > 
               mkdir -p bin &&
               chmod +x build_and_run.sh &&
-              echo "rev" $GITHUB_REF &&
-               ./build_and_run.sh $GITHUB_REF
+              echo "rev" $GITHUB_REF_NAME &&
+               ./build_and_run.sh $GITHUB_REF_NAME
       - uses: AButler/upload-release-assets@v2.0
         with:
           release-tag: v1
