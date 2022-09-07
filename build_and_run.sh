@@ -1,9 +1,7 @@
 #!/bin/sh
 # get file path
 cwd=`dirname "${0}"`
+name=$1
 expr "${0}" : "/.*" > /dev/null || cwd=`(cd "${cwd}" && pwd)`
 
-gcc ${cwd}/main.cpp -lstdc++ -o bin/a.out
-chmod +x bin/a.out
-cd bin
-./a.out
+gcc ${cwd}/main.cpp -lstdc++ -o bin/$1.out

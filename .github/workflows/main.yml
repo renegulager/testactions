@@ -33,9 +33,7 @@ jobs:
         run: > 
               mkdir -p bin &&
               chmod +x build_and_run.sh &&
-               ./build_and_run.sh 
-
-
+               ./build_and_run.sh ${{github.ref_name}}
       - uses: AButler/upload-release-assets@v2.0
         with:
           release-tag: v1
