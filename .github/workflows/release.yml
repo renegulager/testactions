@@ -1,0 +1,30 @@
+# This is a basic workflow to help you get started with Actions
+
+name: release
+
+# Controls when the workflow will run
+on: 
+  push:
+    tags:
+      - "v*"
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+ 
+   build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Prepare env
+        run: sudo apt-get install cmake gcc -y git
+
+      - name: compile
+        run: > 
+              mkdir -p bin &&
+              chmod +x build_and_run.sh &&
+               ./build_and_run.sh 
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: bin/*
