@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
       inputs:
         release-type:
-          description: 'Release type (one of): patch, minor, major'
+          description: 'Release type (one of): prod or  pre'
           required: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -25,13 +25,11 @@ jobs:
         # set Release name
       - name: Generate release name 
         if: startsWith(github.event.inputs.release-type, 'pre') !=true
-        id: tag
         run: |
           echo "::set-output name=release_tag::$(Build_$(date +"%Y.%m.%d_%H-%M")"
          
       - name: Generate release name for pre release
         if: startsWith(github.event.inputs.release-type, 'pre')
-        id: tag
         run: |
           echo "::set-output name=release_tag::$(Prerelease_Build_$(date +"%Y.%m.%d_%H-%M")"
 
