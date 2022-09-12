@@ -32,6 +32,8 @@ jobs:
         if: startsWith(github.event.inputs.release-type, 'pre')
         env:
           NEW_VERSION: "Prerelease_Build"
+        run: echo ${{ env.NEW_VERSION }}
+        
       - name: Generate Changelog
         run: echo "change log from git  !todo " > ${{ github.workspace }}-CHANGELOG.txt
 
