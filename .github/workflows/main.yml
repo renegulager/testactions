@@ -42,9 +42,8 @@ jobs:
         run: > 
               mkdir -p bin &&
               chmod +x build_and_run.sh &&
-              ./build_and_run.sh &&
-             echo "Deploying to production server on branch $GITHUB_REF"
-
+              ./build_and_run.sh 
+              
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
