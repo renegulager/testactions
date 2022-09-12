@@ -3,7 +3,12 @@
 name: CI
 
 # Controls when the workflow will run
-on: push
+on: 
+  workflow_dispatch:
+      inputs:
+        release-type:
+          description: 'Release type (one of): patch, minor, major'
+          required: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -12,9 +17,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      #checkout
       - uses: actions/checkout@v3
       - name: Prepare env
         run: sudo apt-get install cmake gcc -y git
+     
+        # set Release name
+      - name: Generate release name 
+        if: startsWith(github.event.inputs.release-type, 'pre') !=true
+        id: tag
+        run: |
+          echo "::set-output name=release_tag::$(Build_$(date +"%Y.%m.%d_%H-%M")"
+         
+      - name: Generate release name for pre release
+        if: startsWith(github.event.inputs.release-type, 'pre')
+        id: tag
+        run: |
+          echo "::set-output name=release_tag::$(Prerelease_Build_$(date +"%Y.%m.%d_%H-%M")"
+
       - name: Generate Changelog
         run: echo "change log from git  !todo " > ${{ github.workspace }}-CHANGELOG.txt
 
@@ -25,10 +45,6 @@ jobs:
               chmod +x build_and_run.sh &&
                ./build_and_run.sh 
 
-      - name: Generate release tag
-        id: tag
-        run: |
-         echo ::set-output name=release_tag::${GITHUB_REF#refs/*/}
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
