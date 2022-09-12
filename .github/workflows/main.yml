@@ -25,11 +25,13 @@ jobs:
         # set Release name
       - name: Generate release name 
         if: startsWith(github.event.inputs.release-type, 'pre') !=true
+        id: releaseName
         run: |
           echo "NEW_VERSION=Build_$(date +"%Y.%m.%d_%H-%M")"
          
       - name: Generate release name for pre release
         if: startsWith(github.event.inputs.release-type, 'pre')
+        id: releaseName
         env:
           NEW_VERSION: "Prerelease_Build"
         run: echo ${{ env.NEW_VERSION }}
