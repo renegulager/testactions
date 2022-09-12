@@ -30,9 +30,8 @@ jobs:
          
       - name: Generate release name for pre release
         if: startsWith(github.event.inputs.release-type, 'pre')
-        run: |
-          echo "NEW_VERSION=Prerelease_Build_$(date +"%Y.%m.%d_%H-%M")"
-
+        env:
+          NEW_VERSION="Prerelease_Build_$(date +"%Y.%m.%d_%H-%M")"
       - name: Generate Changelog
         run: echo "change log from git  !todo " > ${{ github.workspace }}-CHANGELOG.txt
 
