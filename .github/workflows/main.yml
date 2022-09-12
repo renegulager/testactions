@@ -9,10 +9,7 @@ on:
         release-type:
           description: 'Release type (one of): prod or  pre'
           required: true
-      outputs:
-        releaseName: 
-          value: ${{ Build_$(date +"%Y.%m.%d_%H-%M")}}  
-          description: The name of the release 
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
  
@@ -28,17 +25,13 @@ jobs:
         # set Release name
       - name: Generate release name 
         if: startsWith(github.event.inputs.release-type, 'pre') !=true
-        id: releaseName
         run: |
-          echo "NEW_VERSION=Build_$(date +"%Y.%m.%d_%H-%M")"
+          echo "releaseName=yellow" >> $GITHUB_ENV
          
       - name: Generate release name for pre release
         if: startsWith(github.event.inputs.release-type, 'pre')
-        id: releaseName
-        env:
-          NEW_VERSION: "Prerelease_Build"
-        run: echo ${{ env.NEW_VERSION }}
-
+        run: | 
+          echo "releaseName=pre" >> $GITHUB_ENV 
       - name: Generate Changelog
         run: echo "change log from git  !todo " > ${{ github.workspace }}-CHANGELOG.txt
 
@@ -56,7 +49,6 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ env.NEW_VERSION }}
+          tag_name: ${{ env.releaseName }}
           files: bin/*
-          
-          
+        
