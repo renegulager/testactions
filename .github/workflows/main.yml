@@ -43,7 +43,7 @@ jobs:
               mkdir -p bin &&
               chmod +x build_and_run.sh &&
               ./build_and_run.sh &&
-              echo ${{ env.NEW_VERSION }}
+              echo ${{ $GITHUB_REF }}
 
       - name: Release
         uses: softprops/action-gh-release@v1
