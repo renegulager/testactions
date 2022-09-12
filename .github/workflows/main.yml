@@ -33,7 +33,7 @@ jobs:
         env:
           NEW_VERSION: "Prerelease_Build"
         run: echo ${{ env.NEW_VERSION }}
-        
+
       - name: Generate Changelog
         run: echo "change log from git  !todo " > ${{ github.workspace }}-CHANGELOG.txt
 
@@ -42,7 +42,8 @@ jobs:
         run: > 
               mkdir -p bin &&
               chmod +x build_and_run.sh &&
-               ./build_and_run.sh 
+              ./build_and_run.sh &&
+              echo ${{ env.NEW_VERSION }}
 
       - name: Release
         uses: softprops/action-gh-release@v1
