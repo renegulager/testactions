@@ -46,7 +46,7 @@ jobs:
 
       - name: tst env
         run: >
-          echo "Deploying to production server on branch $GITHUB_REF"
+          echo "Deploying to production server on branch $GITHUB_REF_NAME"
         
       - name: Release
         uses: softprops/action-gh-release@v1
