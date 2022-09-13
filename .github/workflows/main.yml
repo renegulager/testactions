@@ -56,7 +56,7 @@ jobs:
       
       - name: tst
         run: >
-          cd bin/
+          cd bin/ &&
           ls -al 
       - name: Download built artifact
         uses: actions/download-artifact@v3
