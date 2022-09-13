@@ -40,7 +40,7 @@ jobs:
           echo "preRelease=true" >> $GITHUB_ENV
 
       - name: Generate Changelog
-        run: echo "change log from git  !todo " > ${{ github.workspace }}-CHANGELOG.txt
+        run: echo "change log from git  !todo " > bin/${{ github.workspace }}-CHANGELOG.txt
 
 
       - name: compile
@@ -49,13 +49,6 @@ jobs:
               chmod +x build_and_run.sh &&
               ./build_and_run.sh 
 
-      - name: tst env
-        run: >
-          echo "Deploying to production server  branch $GITHUB_REF_NAME"
-        
-      - name: Set env
-        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" 
- 
       - name: Release
         uses: softprops/action-gh-release@v1
         with: 
