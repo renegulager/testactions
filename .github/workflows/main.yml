@@ -47,7 +47,7 @@ jobs:
           echo "Deploying to production server  branch $GITHUB_REF_NAME"
         
       - name: Set env
-        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" 
  
       - name: Release
         uses: softprops/action-gh-release@v1
