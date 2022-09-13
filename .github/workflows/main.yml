@@ -45,7 +45,7 @@ jobs:
         run: > 
               mkdir -p bin &&
               chmod +x build_and_run.sh &&
-              ./build_and_run.sh  ${{matrix.os}}
+              ./build_and_run.sh  ${{github.ref_name}}-${{matrix.os}}
      
       - name: Create Artifact
         uses: actions/upload-artifact@v3
