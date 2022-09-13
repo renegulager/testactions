@@ -28,15 +28,13 @@ jobs:
      
         # set Release name
       - name: Generate release name 
-        if: startsWith(github.event.inputs.release-type, 'pre') !=true
+        if: contains( ${{github.ref_name}} !=true
         run: |
-          echo "releaseName=yellow" >> $GITHUB_ENV
           echo "preRelease=false" >> $GITHUB_ENV
 
       - name: Generate release name for pre release
-        if: startsWith( ${{github.ref_name}} , 'pre')
+        if: contains( ${{github.ref_name}} , 'pre')
         run: | 
-          echo "releaseName=pre" >> $GITHUB_ENV
           echo "preRelease=true" >> $GITHUB_ENV
 
       - name: Generate Changelog
@@ -55,6 +53,5 @@ jobs:
         #  tag_name: ${{ env.releaseName }}
           files: |
             bin/*
-            testactions/*
           prerelease: ${{ env.preRelease }}
           generate_release_notes: true
