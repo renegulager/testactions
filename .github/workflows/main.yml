@@ -49,7 +49,7 @@ jobs:
               chmod +x build_and_run.sh &&
               ./build_and_run.sh  ${{github.ref_name}}-${{matrix.os}}
   release:
-    if: github.event_name == 'push' && contains(github.ref, 'pre-v')
+    if: github.event_name == 'push' && contains(github.ref_name, 'pre-v')
     steps:
       - name: Create Artifact
         uses: actions/upload-artifact@v3
