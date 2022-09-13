@@ -50,6 +50,7 @@ jobs:
               ./build_and_run.sh  ${{github.ref_name}}-${{matrix.os}}
      
       - name: Create Artifact
+        if: github.event_name == 'push' && contains(github.ref_name, 'pre-v') ||  github.event_name == 'push' && contains(github.ref_name, 'v') 
         uses: actions/upload-artifact@v3
         with:
           name: ${{matrix.os}}-build
@@ -57,15 +58,18 @@ jobs:
           retention-days: 5
       
       - name: tst
-        run: >
+        if: github.event_name == 'push' && contains(github.ref_name, 'pre-v') ||  github.event_name == 'push' && contains(github.ref_name, 'v')
+          run: >
           cd bin/ &&
           ls -al 
       - name: Download built artifact
+        if: github.event_name == 'push' && contains(github.ref_name, 'pre-v') ||  github.event_name == 'push' && contains(github.ref_name, 'v') 
         uses: actions/download-artifact@v3
         with:
           name: ${{matrix.os}}-build
       
       - name: Release
+        if: github.event_name == 'push' && contains(github.ref_name, 'pre-v') ||  github.event_name == 'push' && contains(github.ref_name, 'v') 
         uses: softprops/action-gh-release@v1
         with: 
           #tag_name: ${{matrix.os}}-${{github.ref_name}}
