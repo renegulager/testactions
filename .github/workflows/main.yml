@@ -40,7 +40,7 @@ jobs:
           echo "preRelease=true" >> $GITHUB_ENV
 
       - name: Generate Changelog
-        run: echo "change log from git  !todo " > bin/${{ github.workspace }}-CHANGELOG.txt
+        run: echo "change log from git  !todo " > ${{ github.workspace }}-CHANGELOG.txt
 
 
       - name: compile
@@ -53,6 +53,8 @@ jobs:
         uses: softprops/action-gh-release@v1
         with: 
         #  tag_name: ${{ env.releaseName }}
-          files: bin/*
+          files: |
+            bin/*
+            testactions/*
           prerelease: ${{ env.preRelease }}
         
