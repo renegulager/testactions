@@ -57,4 +57,4 @@ jobs:
             bin/*
             testactions/*
           prerelease: ${{ env.preRelease }}
-        
+          generate_release_notes: true
