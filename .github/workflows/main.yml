@@ -6,7 +6,7 @@ name: CI
 on: 
   push: 
     tags:
-      - 'v*'
+      - '**'
 
 #  workflow_dispatch:
 #      inputs:
@@ -34,7 +34,7 @@ jobs:
           echo "preRelease=false" >> $GITHUB_ENV
 
       - name: Generate release name for pre release
-        if: startsWith(github.event.inputs.release-type, 'pre')
+        if: startsWith( ${{github.ref_name}} , 'pre')
         run: | 
           echo "releaseName=pre" >> $GITHUB_ENV
           echo "preRelease=true" >> $GITHUB_ENV
