@@ -28,7 +28,7 @@ jobs:
      
         # set Release name
       - name: Generate release name 
-        if: contains( ${{github.ref_name}} !=true
+        if: contains( ${{github.ref_name}}, 'pre') !=true
         run: |
           echo "preRelease=false" >> $GITHUB_ENV
 
