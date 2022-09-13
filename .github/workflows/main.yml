@@ -4,7 +4,8 @@ name: CI
 
 # Controls when the workflow will run
 on: 
-  tags:
+  push: 
+    tags:
       - 'v*'
 
 #  workflow_dispatch:
