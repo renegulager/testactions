@@ -52,7 +52,11 @@ jobs:
           name: ${{matrix.os}}-build
           path: bin/*
           retention-days: 5
-
+      
+      - name: tst
+        run: >
+          cd bin/
+          ls -al 
       - name: Download built artifact
         uses: actions/download-artifact@v3
         with:
