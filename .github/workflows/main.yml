@@ -20,7 +20,7 @@ jobs:
   build-and-test:
     strategy:
       matrix:
-        os: ["windows-2022", "ubuntu-20.04"]
+        os: ["ubuntu-20.04"]
       fail-fast: true
     runs-on: ${{matrix.os}}
 
