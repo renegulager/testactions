@@ -18,16 +18,19 @@ jobs:
     steps:
      
       - name: test  matrix windows
-        if: ${{matrix.os}}=="windows-2022"
+        if: ${{matrix.os}} == 'windows-2022'
         run: > 
           echo "WINDOWS"
+          ls
 
       - name: test  matrix ubuntu
-        if: ${{matrix.os}}="ubuntu"
+        if: ${{matrix.os}} == 'ubuntu'
         run: > 
           echo "ubuntu"
+          ls
 
       - name: test  matrix mac
-        if: ${{matrix.os}}=="macos-12"
+        if: ${{matrix.os}} == 'macos-12'
         run: > 
           echo "mac"
+          ls
