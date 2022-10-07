@@ -16,35 +16,7 @@ jobs:
       fail-fast: true
     runs-on: ${{matrix.os}}
     steps:
-      #checkout
-      - uses: actions/checkout@v3
-      - name: Prepare env
-        run: sudo apt-get install cmake gcc -y git
      
-        # set Release name
-      - name: Generate release name 
-        if: contains( github.ref_name, 'pre') !=true
-        run: |
-          echo "preRelease=false" >> $GITHUB_ENV
-
-      - name: Generate release name for pre release
-        if: contains( github.ref_name , 'pre')
-        run: | 
-          echo "preRelease=true" >> $GITHUB_ENV
-
-      - name: compile
-        run: > 
-              mkdir -p bin &&
-              chmod +x build_and_run.sh &&
-              ./build_and_run.sh 
-     
-      - name: Create Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{matrix.os}}-build
-          path: bin/*
-          retention-days: 5
-
       - name: test  matrix windows
         if: ${{matrix.os}}  ="windows"
         run: > 
@@ -55,20 +27,12 @@ jobs:
         run: > 
           echo "ubuntu"
 
+      - name: test  matrix mac
+        if: ${{matrix.os}}  ="mac"
+        run: > 
+          echo "mac"
+
       - name: tst
         run: >
           cd bin/
           ls -al 
-      - name: Download built artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: ${{matrix.os}}-build
-      
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        with: 
-          #tag_name: ${{matrix.os}}-${{github.ref_name}}
-          files: |
-            bin/*
-          prerelease: ${{ env.preRelease }}
-          generate_release_notes: true
