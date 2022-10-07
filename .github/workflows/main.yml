@@ -6,8 +6,7 @@ name: CI
 # Controls when the workflow will run dd
 on: 
   push: 
-    tags:
-      - '**'
+    
 jobs:
   build-and-test:
     strategy:
