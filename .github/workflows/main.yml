@@ -8,14 +8,6 @@ on:
   push: 
     tags:
       - '**'
-
-#  workflow_dispatch:
-#      inputs:
-#        release-type:
-#          description: 'Release type (one of): prod or  pre'
-#          required: true
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build-and-test:
     strategy:
