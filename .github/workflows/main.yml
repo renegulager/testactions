@@ -15,25 +15,25 @@ jobs:
 
       fail-fast: true
     runs-on: ${{matrix.os}}
-    steps:
-     
+    steps: 
+    
       - name: test  matrix windows
-        if: ${{matrix.os}} == 'windows-2022'
+        if: ${{matrix.os=='windows-2022'}}
         shell: bash 
         run: > 
           echo "WINDOWS" &&
-          ls
+          ls -al
 
       - name: test  matrix ubuntu
-        if: ${{matrix.os}} == 'ubuntu'
+        if: ${{matrix.os=='ubuntu'}}      
         shell: bash 
         run: > 
           echo "ubuntu" &&
-          ls
-
+          ls -al
+          
       - name: test  matrix mac
-        if: ${{matrix.os}} == 'macos-12'
+        if: ${{matrix.os=='maoos-12'}}
         shell: bash 
         run: > 
-          echo "mac" &&
-          ls
+          echo "mac" && 
+          ls -al
