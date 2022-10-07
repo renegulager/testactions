@@ -17,9 +17,11 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  build-and-test:
     strategy:
       matrix:
-        os: ["windows-2022", "ubuntu-20.04"]
+        os: ["windows-2022", "macos-12"]
+
       fail-fast: true
     runs-on: ${{matrix.os}}
     steps:
