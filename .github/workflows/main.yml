@@ -52,7 +52,17 @@ jobs:
           name: ${{matrix.os}}-build
           path: bin/*
           retention-days: 5
-      
+
+      - name: test  matrix windows
+        if: ${{matrix.os}}  ="windows"
+        run: > 
+          echo "WINDOWS"
+
+      - name: test  matrix ubuntu
+        if: ${{matrix.os}}  ="ubuntu"
+        run: > 
+          echo "ubuntu"
+
       - name: tst
         run: >
           cd bin/
